@@ -1,8 +1,8 @@
+import os
+import sys
 from collections import Counter
 
 import spotipy
-import sys
-import os
 from rich.console import Console
 from spotipy.oauth2 import SpotifyOAuth
 
@@ -21,7 +21,9 @@ def analyze_user(user_id=None):
     print()
     console.print(f'Analyzing user {user["display_name"]}...', style='dark_blue')
     console.print(f'Number of followers: {user["followers"]["total"]}', style='dark_blue')
-    console.print(f'Profile picture: {user["images"][0]["url"]}', style='dark_blue')
+    # console.print(f'Profile picture: {user["images"][0]["url"]}', style='dark_blue')
+    # pfp = DrawImage.from_url(user["images"][0]["url"], (32, 32))
+    # pfp.draw_image()
 
     if user_id is None:
         top_tracks = spotify.current_user_top_tracks(limit=10, time_range='long_term', offset=0)
@@ -78,7 +80,7 @@ def main(argv):
 
 if __name__ == '__main__':
     print('Starting SpotiCLI')
-    # sys.argv = ['SpoitCLI.py', '-a', '-U', '--self']
+    sys.argv = ['SpoitCLI.py', '-a', '-U', '--self']
     main(sys.argv[1:])
 
 # -a --analyze (prints out general analysis of object)
